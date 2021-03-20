@@ -1,6 +1,6 @@
 import React from 'react';
 import './rooms.css';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 function Rooms() {
   const history = useHistory();
@@ -16,10 +16,6 @@ function Rooms() {
 		  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
 		  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
 		  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
-  const handleClick = () =>{
-    history.push('/room');
-  }
-
 
   return (
     <div className="containerRoom">
