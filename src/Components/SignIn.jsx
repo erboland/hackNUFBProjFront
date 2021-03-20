@@ -12,9 +12,10 @@ function SignIn() {
     fetch('http://62.171.186.222:9090/api/auth/login', {
       method: "POST",
       body: JSON.stringify(user),
-      headers: {"Content-type": "application/json;charset=UTF-8", "Access-Control-Allow-Origin": "*"},
-    }).then(res=>{
-      console.log(res);
+      headers: {"Content-type": "application/json;charset=UTF-8"},
+    }).then(res=> res.json())
+    .then(resData => {
+      console.log(resData)
     })
   }
 
