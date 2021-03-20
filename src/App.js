@@ -5,6 +5,7 @@ import SignIn from './Components/SignIn';
 import Registration from './Components/Registration';
 import RoomEnter from './Components/RoomEnter';
 import ChatContainer from './Components/ChatContainer';
+import Rooms from './Components/Rooms';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/registration" component={Registration}/>
           <Route path="/room" component={RoomEnter}/>
           <Route path="/chat" component={ChatContainer}/>
+          <Route path="/rooms" component={Rooms}/>
         </Switch>
       </HashRouter>
     </div>

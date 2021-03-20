@@ -28,6 +28,9 @@ function SignIn() {
         <button className="loginButton" onClick={handleClick}>Enter</button>
         <Link className="noRegister" to="/registration">Have not already registered?</Link>
       </div>
+      <div className="curl">
+        <div onClick={()=>history.push('/rooms')}>Rooms?</div>
+      </div>
     </div>
   )
 

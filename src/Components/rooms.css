@@ -1,0 +1,37 @@
+.containerRoom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+
+.search input {
+  background: #6588DE;
+  border-radius: 14px;
+  height: 3rem;
+  font-size: 2rem;
+  border: 0;
+  width: 100%;
+  color: white;
+  padding-left: 1rem;
+  outline: none;
+  margin-bottom: 2rem;
+}
+
+.roomsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.room {
+  width: 30%;
+  height: 2rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 3rem;
+}
