@@ -32,6 +32,26 @@
   margin-top: 0;
 }
 
+.regContainer h1{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 6rem;
+  line-height: 7rem;
+  color: #000000;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.regContainer .inputs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.regContainer .inputs .inputRow {
+  width: 40%;
+  margin: 1rem;
+}
+
 .emoji{
   font-size: 5rem;
 }
