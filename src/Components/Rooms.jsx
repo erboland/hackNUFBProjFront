@@ -1,8 +1,9 @@
 import React from 'react';
 import './rooms.css';
+import {useHistory} from 'react-router-dom';
 
 function Rooms() {
-
+  const history = useHistory();
   const rooms = [123, 321,12334, 12341234, 123435, 34645, 43643];
   const colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
 		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
@@ -29,6 +30,9 @@ function Rooms() {
             </div>
           )
         })}
+      </div>
+      <div className="curl" onClick = {()=>history.push('/')}>
+        <div>Main</div>
       </div>
     </div>
   )
