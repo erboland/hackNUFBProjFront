@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './chat.css';
-import openSocket from 'socket.io-client';
+//import openSocket from 'socket.io-client';
 import {useHistory} from 'react-router-dom';
 
 function Chat({roomNumber, userName}) {
@@ -30,16 +30,16 @@ function Chat({roomNumber, userName}) {
 //    const socket = openSocket("http://62.171.186.222:3000");
   }, [roomNumber])
 
-  const handleLogout = () =>{
-    fetch('http://62.171.186.222:9090/api/auth/logout', {
-      method: "GET",
-      headers: {"Content-type": "application/json;charset=UTF-8", Authorization:`Bearer ${sessionStorage.token}`},
-    }).then(res=>res.json())
-    .then(resData=>{
-      console.log(resData);
-    });
-    history.push('/');
-  }
+//  const handleLogout = () =>{
+//    fetch('http://62.171.186.222:9090/api/auth/logout', {
+//      method: "GET",
+//      headers: {"Content-type": "application/json;charset=UTF-8", Authorization:`Bearer ${sessionStorage.token}`},
+//    }).then(res=>res.json())
+//    .then(resData=>{
+//      console.log(resData);
+//    });
+//    history.push('/');
+//  }
 
   const sendMessage = () =>{
     fetch('https://hacknu-telegram-bot.herokuapp.com/room/updates', {
