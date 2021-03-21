@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './rooms.css';
 import {useHistory} from 'react-router-dom';
 
 function Rooms() {
   const history = useHistory();
-  const rooms = [123, 321,12334, 12341234, 123435, 34645, 43643];
+  const rooms = ["10", "123", "321", "12334", "12341234", "123435", "34645", "43643"];
+  const [search, setSearch] = useState('');
   const colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
 		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
 		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
@@ -20,15 +21,16 @@ function Rooms() {
     <div className="containerRoom">
       <div className="search">
         <h1>Find your room 🔎</h1>
-        <input type="text"/>
+        <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)}/>
       </div>
       <div className="roomsList">
         {rooms.map(value=>{
-          return (
+
+          return value.toString().startsWith(search) ?
             <div className="room" style={{color: colors[Math.floor(Math.random()*Math.floor(colors.length))]}}>
               {value}
             </div>
-          )
+          : null
         })}
       </div>
       <div className="curl" onClick = {()=>history.push('/')}>

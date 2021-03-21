@@ -1,5 +1,6 @@
 import './App.css';
-import {HashRouter} from 'react-router-dom';
+import {useEffect} from 'react';
+import {HashRouter, useHistory} from 'react-router-dom';
 import {HashRouter as Switch, Route} from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import Registration from './Components/Registration';
@@ -8,6 +9,14 @@ import ChatContainer from './Components/ChatContainer';
 import Rooms from './Components/Rooms';
 
 function App() {
+  const history = useHistory();
+
+  useEffect(()=>{
+    if (!sessionStorage.token) {
+      history.push('./')
+    };
+  });
+
   return (
     <div className="App">
       <HashRouter>

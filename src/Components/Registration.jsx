@@ -8,20 +8,37 @@ function Registration() {
   const [user, setUser] = useState ({email: "", password:"", firstName:"", lastName:"", login: ""});
 
   const handleChange = (type, value) =>{
-    setUser({...user, type: value});
+    switch (type){
+      case "email":
+        setUser({...user, email: value});
+        break;
+      case "password":
+        setUser({...user, password: value});
+        break;
+      case "firstName":
+        setUser({...user, firstName: value});
+        break;
+      case "lastName":
+        setUser({...user, lastName: value});
+        break;
+      case "login":
+        setUser({...user, login: value});
+        break;
+      default:
+        console.log('no such case');
+        break;
+    }
   }
 
   const handleSubmit = () =>{
-    console.log(user);
-//    history.push('/room');
-//    fetch('http://62.171.186.222:9090/api/auth/login', {
-//      method: "POST",
-//      body: JSON.stringify(user),
-//      headers: {"Content-type": "application/json;charset=UTF-8", "Access-Control-Allow-Origin": "*"},
-//      mode:"no-cors"
-//    }).then(res=>{
-//      console.log(res);
-//    })
+    fetch('http://62.171.186.222:9090/api/account/create', {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {"Content-type": "application/json;charset=UTF-8", "Access-Control-Allow-Origin": "*"},
+    }).then(res=>res.json())
+    .then(resData=>{
+      resData.token ? history.push('/chat') : alert("Something went wrong. Check your credentials");
+    })
   }
 
   return (

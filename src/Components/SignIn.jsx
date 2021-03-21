@@ -15,7 +15,12 @@ function SignIn() {
       headers: {"Content-type": "application/json;charset=UTF-8"},
     }).then(res=> res.json())
     .then(resData => {
-      console.log(resData)
+      if (resData.token) {
+        sessionStorage.token = resData.token;
+        history.push('/room');
+      } else {
+        alert("Something went wrong. Check your credentials")
+      };
     })
   }
 
