@@ -9,13 +9,13 @@ import ChatContainer from './Components/ChatContainer';
 import Rooms from './Components/Rooms';
 
 function App() {
-  const history = useHistory();
-
-  useEffect(()=>{
-    if (!sessionStorage.token) {
-      history.push('./')
-    };
-  });
+//  const history = useHistory();
+//
+//  useEffect(()=>{
+//    if (!sessionStorage.token) {
+//      history.push('./')
+//    };
+//  });
 
   return (
     <div className="App">

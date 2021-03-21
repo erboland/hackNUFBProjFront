@@ -1,13 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './chat.css';
-//import openSocket from 'socket.io-client';
+import openSocket from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
 import {useHistory} from 'react-router-dom';
+import useChat from './useChat';
 
 function Chat({roomNumber, userName}) {
   const history = useHistory();
-  const [messages, setMessages] = useState([{me: false, msg:"hello world", name: "Test Telegram"}]);
+  const [messageso, setMessageso] = useState([{me: false, msg:"hello world", name: "Test Telegram"}]);
 
+  const {messages, sendMessage} = useChat(roomNumber);
   const [message, setMessage] = useState('');
+  const socketRef = useRef(null);
+  const socket = openSocket("http://62.171.186.222:3000");
 
   useEffect(()=>{
     if (roomNumber) {
@@ -27,40 +32,39 @@ function Chat({roomNumber, userName}) {
         console.log(resData);
       });
     }
-//    const socket = openSocket("http://62.171.186.222:3000");
+
+    socket.on("10", data=>{
+      console.log(data)
+    });
+
   }, [roomNumber])
 
-//  const handleLogout = () =>{
-//    fetch('http://62.171.186.222:9090/api/auth/logout', {
-//      method: "GET",
-//      headers: {"Content-type": "application/json;charset=UTF-8", Authorization:`Bearer ${sessionStorage.token}`},
-//    }).then(res=>res.json())
-//    .then(resData=>{
-//      console.log(resData);
-//    });
-//    history.push('/');
-//  }
 
-  const sendMessage = () =>{
-    fetch('https://hacknu-telegram-bot.herokuapp.com/room/updates', {
-      method: "POST",
-      body: JSON.stringify({roomId: roomNumber, message: `${userName} \n${message}`, secretKey: "DELTA"}),
-      headers: {"Content-type": "application/json;charset=UTF-8", Authorization:`Bearer ${sessionStorage.token}`, 'Access-Control-Allow-Origin': '*'},
-      mode:'no-cors'
-    }).then(res=>{
-      setMessage("");
-      setMessages(messages => [...messages, {
-        me: true,
-        msg: message,
-        name: userName
-      }])
-    });
+
+  console.log(messages);
+
+  const sendMessageToChat = () =>{
+//    fetch('https://hacknu-telegram-bot.herokuapp.com/room/updates', {
+//      method: "POST",
+//      body: JSON.stringify({roomId: roomNumber, message: `${userName} \n${message}`, secretKey: "DELTA"}),
+//      headers: {"Content-type": "application/json;charset=UTF-8", Authorization:`Bearer ${sessionStorage.token}`, 'Access-Control-Allow-Origin': '*'},
+//      mode:'no-cors'
+//    }).then(res=>{
+//      setMessage("");
+//      setMessages(messages => [...messages, {
+//        me: true,
+//        msg: message,
+//        name: userName
+//      }])
+//    });
+    sendMessage(message, {name: userName, id: 1});
+
   }
 
   return (
     <div className="chatOutContainer">
       <div className="chatContainer">
-        {roomNumber ? messages.map((value, index)=>{
+        {roomNumber ? messageso.map((value, index)=>{
           return (
             <div className="messageBlock" style={{alignItems: value.me ? "flex-end" : "flex-start"}} key={index}>
              <div className="message" >
@@ -74,7 +78,7 @@ function Chat({roomNumber, userName}) {
       </div>
       <div className="chatInputBlock">
         <input type="text" value={message} onChange={(e)=>setMessage(e.target.value)}/>
-        <button onClick={sendMessage}>Send</button>
+        <button onClick={sendMessageToChat}>Send</button>
       </div>
     </div>
 
